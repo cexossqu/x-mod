@@ -7,6 +7,7 @@ PrefabFiles = {
     "ancient_soul",
     "ancient_gem",
     "maxwelllight",
+    "ydj_dst_td1madao_air_sword",
 }
 
 local Ingredient = GLOBAL.Ingredient

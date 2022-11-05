@@ -11,6 +11,7 @@ local assets=
 
 local prefabs = 
 {
+    "ydj_dst_td1madao_air_sword"
 }
 
 --local wilson_attack = 34
@@ -152,7 +153,7 @@ local function ontakefuel(inst, giver, item)
     local gemArray = {"redgem", "bluegem", "purplegem", "greengem", "orangegem", "yellowgem"}
     local str = item.prefab
     --GetPlayer().components.talker:Say(str)
-    for i= 0, 5 do
+    for i= 1, 5 do
         if gemArray[i] == str then
             -- 目前只用宝石升级....一个宝石升一级..去除经验值递增升级
             -- inst.xtotal = inst.xtotal + 1
@@ -294,7 +295,10 @@ local function SpawnIceFx(inst, target)
 end
 
 
+
 local function onattack(inst, attacker, target, skipsanity)
+    SpawnPrefab("ydj_dst_td1madao_air_sword").Transform:SetPosition(inst.Transform:GetWorldPosition())
+
     local temp = math.random(0, 9)
     local temp1 = math.random(0, 100)
     if temp <= 3 then
@@ -313,12 +317,13 @@ local function onattack(inst, attacker, target, skipsanity)
         attacker.components.health:DoDelta(-20)
         attacker.components.sanity:DoDelta(-15)
     end
+    
 end
 
 local function xAccept(inst, item, giver)
     local str = item.prefab
     local gemArray = {"redgem", "bluegem", "purplegem", "greengem", "orangegem", "yellowgem", "ancient_gem", "ancient_soul"}
-    for i= 0, 7 do
+    for i= 0, 8 do
         if gemArray[i] == str then
             return true
         end
@@ -410,6 +415,8 @@ local function fn(colour)
     inst.OnSave = onSave
     inst.OnLoad = onLoad
     inst.components.inspectable:SetDescription(getString(inst))
+
+    
 
 
 --    inst:ListenForEvent("entity_death", function(wrld, data) onKill(inst, data) end, TheWorld)
